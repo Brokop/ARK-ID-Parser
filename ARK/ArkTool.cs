@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
+using BarcodeLib;
 
 namespace ARK
 {
@@ -106,6 +108,13 @@ namespace ARK
 			}
 			return ' ';
 		}
+
+
+		public Image getBarcode()
+		{
+			BarcodeLib.Barcode b = new BarcodeLib.Barcode();
+			return b.Encode(BarcodeLib.TYPE.UPCA, "038000356216", Color.Black, Color.White, 290, 120);
+		}
 	}
 
 
@@ -145,4 +154,6 @@ namespace ARK
 		PRESENTATION,
 
 	}
+
+
 }
