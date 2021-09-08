@@ -55,6 +55,18 @@ namespace ARK
 			return "";
 		}
 
+		public void getBarcode()
+		{
+			try
+			{
+			Barcode DataMatrix = new Barcode(output, TYPE.CODE128);
+			DataMatrix.SaveImage("ARKID_" + output, SaveTypes.PNG);
+			} catch(Exception we)
+			{
+				throw(we);
+			}
+		}
+
 
 		public char[] getTypePrefix(Type type)
 		{
@@ -109,12 +121,14 @@ namespace ARK
 			return ' ';
 		}
 
-
+		/*
 		public Image getBarcode()
 		{
 			BarcodeLib.Barcode b = new BarcodeLib.Barcode();
 			return b.Encode(BarcodeLib.TYPE.UPCA, "038000356216", Color.Black, Color.White, 290, 120);
 		}
+		*/
+
 	}
 
 
