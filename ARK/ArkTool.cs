@@ -6,7 +6,7 @@ using BarcodeLib;
 
 namespace ARK
 {
-	class ArkTool
+	static class ArkTool
 	{
 
 		/*	
@@ -17,117 +17,13 @@ namespace ARK
 		 *	Classification level is stored in META and may change during lifetime of the entity, thus its not part of the unique ARK ID
 		*/
 
-
-		// Prefix Three letters
-		char[] prefix = new char[3];
-		// Additional ID elaborating on the prefix, can be SCP number, department ID and alike
-		int prefixID;
-		// Type of entry specifying document type (Possibly in relation to the PrefixID (Addendum, Core etc.))
-		char subType;
-		// Unique auto-generated key
-		int id;
-
-
-		string output;
-
-		public int setString(Type prefix, int prefixID, Category subType, int id)
-		{
-			// To-do Add proper validation
-
-			// Assign prefix
-			this.prefix = getTypePrefix(prefix);
-
-			// Assign PrefID
-			this.prefixID = prefixID;
-
-			// Assign Category
-			this.subType = getCategoryPrefix(subType);
-
-			// Assign CategorzID
-			this.id = id;
-
-			return 0;
-		}
-
-		public string toString()
+		static public Image getBarcode(ArkID key)
 		{
 
-			return "";
-		}
-
-		public void getBarcode()
-		{
-			try
-			{
-			Barcode DataMatrix = new Barcode(output, TYPE.CODE128);
-			DataMatrix.SaveImage("ARKID_" + output, SaveTypes.PNG);
-			} catch(Exception we)
-			{
-				throw(we);
-			}
-		}
-
-
-		public char[] getTypePrefix(Type type)
-		{
-			switch (type)
-			{
-				case Type.SCP:
-					{
-						return new char[] { 'S', 'C', 'P' };
-					}
-				case Type.DEPARTMENTS:
-					{
-						return new char[] { 'D', 'E', 'P' };
-					}
-				case Type.REDACTED:
-					{
-						return new char[] { 'R', 'E', 'D' };
-					}
-				case Type.ARCHIVEONLY:
-					{
-						return new char[] { 'A', 'R', 'C' };
-					}
-				case Type.EXTERNAL:
-					{
-						return new char[] { 'E', 'X', 'T' };
-					}
-				case Type.NOCLASS:
-					{
-						return new char[] { 'N', 'O', 'C' };
-					}
-
-			}
-			return null;
-		}
-
-		public char getCategoryPrefix(Category cat)
-		{
-			switch (cat)
-			{
-				case Category.CORE:
-					{
-						return 'C';
-					}
-				case Category.ADDENDUM:
-					{
-						return 'A';
-					}
-				case Category.MEDIA:
-					{
-						return 'M';
-					}
-			}
-			return ' ';
-		}
-
-		/*
-		public Image getBarcode()
-		{
 			BarcodeLib.Barcode b = new BarcodeLib.Barcode();
-			return b.Encode(BarcodeLib.TYPE.UPCA, "038000356216", Color.Black, Color.White, 290, 120);
+			return b.Encode(BarcodeLib.TYPE.CODE128, key.ToString(), Color.Black, Color.White, 290, 120);
+
 		}
-		*/
 
 	}
 

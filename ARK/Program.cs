@@ -1,17 +1,16 @@
 ﻿using System;
-
+using System.Drawing;
+using System.IO;
 namespace ARK
 {
     class Program
     {
         static void Main(string[] args)
         {
-            ArkTool at = new ArkTool();
-
-            at.setString(Type.REDACTED, 0001, Category.CORE, 0);
-            at.getBarcode();
-            Console.WriteLine("End");
-
+            ArkID aID = new ArkID(Type.SCP, 93, Category.CORE, 1);
+            Console.WriteLine(aID.ToString());
+            Image ex = ArkTool.getBarcode(aID);
+            ex.Save(Directory.GetCurrentDirectory() + "/" + "Arkid.png", System.Drawing.Imaging.ImageFormat.Png);
         }
     }
 }
