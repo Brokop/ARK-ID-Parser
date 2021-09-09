@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+
 namespace ARK
 {
     class Program
@@ -11,6 +12,9 @@ namespace ARK
             Console.WriteLine(aID.ToString());
             Image ex = ArkTool.getBarcode(aID);
             ex.Save(Directory.GetCurrentDirectory() + "/" + "Arkid.png", System.Drawing.Imaging.ImageFormat.Png);
+
+            aID.getMatrix();
+        
         }
     }
 }

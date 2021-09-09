@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="BarcodeLib" Version="2.4.0" />
-    <PackageReference Include="FreeSpire.Barcode" Version="2.3.0" />
+    <PackageReference Include="DataMatrix.net" Version="0.4.2" />
   </ItemGroup>
-
+  
 </Project>

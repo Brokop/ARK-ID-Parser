@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using BarcodeLib;
-using Spire.Barcode;
+using BarcodeStandard;
 
 namespace ARK
 {
@@ -70,14 +70,13 @@ namespace ARK
 		{
 			try
 			{
-				/*
-				IBarcodeSettings settings;
-				settings.Type = BarCodeType.
-				BarCodeGenerator generator = new BarCodeGenerator();
-				*/
-
-				Barcode DataMatrix = new Barcode(output, TYPE.CODE128);
-				DataMatrix.SaveImage("ARKID_" + output, SaveTypes.PNG);
+				Console.WriteLine("BEGIN");
+				BarcodeStandard.SaveData sD = new SaveData();
+				sD.EncodedValue = output;
+				sD.IncludeLabel = true;
+				Console.WriteLine(sD.RawData.Length);
+				Console.WriteLine(sD.Image.Length);
+			
 			}
 			catch (Exception we)
 			{
@@ -100,7 +99,7 @@ namespace ARK
 					}
 				case Type.REDACTED:
 					{
-						return "RE";
+						return "RED";
 					}
 				case Type.ARCHIVEONLY:
 					{
