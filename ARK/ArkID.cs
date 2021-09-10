@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using BarcodeLib;
-using BarcodeStandard;
+using DataMatrix.net;
 
 namespace ARK
 {
@@ -51,37 +51,6 @@ namespace ARK
 		{
 			output = prefix.ToString() + prefixID.ToString("D4") + subType + id.ToString("D8");
 			return output;
-		}
-
-		public void getBarcode()
-		{
-			try
-			{
-				Barcode DataMatrix = new Barcode(output, TYPE.CODE128);
-				DataMatrix.SaveImage("ARKID_" + output, SaveTypes.PNG);
-			}
-			catch (Exception we)
-			{
-				throw (we);
-			}
-		}
-
-		public void getMatrix()
-		{
-			try
-			{
-				Console.WriteLine("BEGIN");
-				BarcodeStandard.SaveData sD = new SaveData();
-				sD.EncodedValue = output;
-				sD.IncludeLabel = true;
-				Console.WriteLine(sD.RawData.Length);
-				Console.WriteLine(sD.Image.Length);
-			
-			}
-			catch (Exception we)
-			{
-				throw (we);
-			}
 		}
 
 

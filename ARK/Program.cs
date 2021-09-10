@@ -8,13 +8,10 @@ namespace ARK
     {
         static void Main(string[] args)
         {
-            ArkID aID = new ArkID(Type.SCP, 93, Category.CORE, 1);
+            ArkID aID = new ArkID(Type.REDACTED, 93, Category.ADDENDUM, 81);
             Console.WriteLine(aID.ToString());
-            Image ex = ArkTool.getBarcode(aID);
-            ex.Save(Directory.GetCurrentDirectory() + "/" + "Arkid.png", System.Drawing.Imaging.ImageFormat.Png);
-
-            aID.getMatrix();
-        
+            Image ex = ArkTool.getMatrix(aID);
+            ex.Save(Directory.GetCurrentDirectory() + "/" + "Arkid.png", System.Drawing.Imaging.ImageFormat.Png);        
         }
     }
 }

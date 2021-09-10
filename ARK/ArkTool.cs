@@ -4,6 +4,7 @@ using System.Text;
 using System.Drawing;
 using BarcodeLib;
 
+
 namespace ARK
 {
 	static class ArkTool
@@ -24,6 +25,24 @@ namespace ARK
 			return b.Encode(BarcodeLib.TYPE.CODE128, key.ToString(), Color.Black, Color.White, 290, 120);
 
 		}
+
+		static public Image getMatrix(ArkID key)
+		{
+			try
+			{
+
+				DataMatrix.net.DmtxImageEncoder DIE = new DataMatrix.net.DmtxImageEncoder();
+				DataMatrix.net.DmtxImageEncoderOptions DIEO = new DataMatrix.net.DmtxImageEncoderOptions();
+				Bitmap btm = DIE.EncodeImage(key.ToString(), DIEO);
+				return btm;
+
+			}
+			catch (Exception we)
+			{
+				throw (we);
+			}
+		}
+
 
 	}
 
