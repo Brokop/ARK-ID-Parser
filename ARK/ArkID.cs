@@ -53,7 +53,7 @@ namespace ARK
 			return output;
 		}
 
-
+		// Type of the document
 		public string getTypePrefix(Type type)
 		{
 			switch (type)
